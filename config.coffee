@@ -1,26 +1,35 @@
-config.js
-.cov
-coverage
-node_modules
-.naeindex
-coverage.html
-.monitor
+path = require 'path'
 
-*.min.*.js
-*.min.*.css
-assets.json
+config =
+  debug             : true
 
-# Ignore Mac OS desktop services store
-.DS_Store
+  name              : 'Nodeclub'
+  description       : 'CNode: Node.js 专业中文社区'
 
-# Ignore Windows desktop setting file
-desktop.ini
+  # 添加到 html head 中的信息
+  site_headers      : [
+    '<meta name       ="author" content="chenglong01020@gmail.com">'
+  ]
 
-*.log
+  site_static_host  : ''
+  host              : 'localhost'
+  google_tracker_id : ''
 
-.idea
-public/upload/*
+  # mongodb 配置
+  db                : 'mongodb://127.0.0.1/node_club_dev'
 
-*.sublime-project
-*.sublime-workspace
-*.swp
+  # redis 配置，默认是本地
+  redis_host        : '127.0.0.1'
+  redis_port        : 6379
+  redis_db          : 0
+
+  session_secret    : 'cl_club_secret'
+
+  # 程序运行的端口
+  port              : 3000
+
+if process.env.NODE_ENV is 'development'
+  config.db = 'mongodb://127.0.0.1/node_club_dev'
+
+
+module.exports = config
